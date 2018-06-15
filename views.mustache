@@ -12,46 +12,46 @@
     <h3 class="list">Vacation Builder</h3>
     </div>
 
-    <form class="md-form d-flex flex-row justify-content-between mt-5" action="/trips" method="post">
-      <input type="text" placeholder= "Enter your destination"name="title"/>
-      <div class="file-field" style="width:275">
-        <div class= "z-depth-1-half mb-2">
-            <img  src="Paris.jpg" class="img-fluid" style="height:150px; width:250px">
+    <form class="md-form d-flex flex-row justify-content-between align-items-center mt-5" action="/views" method="post">
+      <input class="ml-2 pl-1" type="text" placeholder= "Enter your destination" name="title"/>
+      <div class= "ml-2 flex-column z-depth-1-half mb-2">
+            <img src="paris-902996_1280.jpg" class="img-fluid" style="height:150px; width:250px">
+            <p class="btn btn-mdb-color btn-rounded" style="height:150px; width:250px">
+                <span class="pt-2">Enter your vacation photo</span>
+                <input type="text" name="imageURL" placeholder="Your vacation photo"/>
+            </p>
         </div>
-        <div class="d-flex flex-column justify-content-center">
-            <div class="btn btn-mdb-color btn-rounded float-left">
-                <span>Upload your vacation photo</span>
-                <input type="text" name="imageURL" placeholder="Your vacation photo" />
-            </div>
-        </div>
-    </div>
-      <input type="text" placeholder="June 10,2016" name="departure"/>
-      <input type="text" placeholder ="June 21,2016" name="arrival"/>
-      <input type="submit"/>
-
-  </form>
+      <p class="builder">Departure Date:</p><input class="pr-1" type="text" placeholder="June 10, 2018" name="departure"/>
+      <p class="builder mr-1">Return Date:</p><input class="pr-1"  type="text" placeholder ="June 21, 2018" name="arrival"/>
+      <input class="button" type="submit"/>
+    </form>
 
 <div class="d-flex justify-content-center mt-5">
-<h3 class="list">Trip List</h3>
+<h3 class="listTrip">Trip List</h3>
 </div>
 
-<!-- running a loop on  -->
+<!-- running a loop on  -->     
 
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center mt-2">
     <ul>
   {{#tripsList}}
-        <li class="w-300">
+        <li class=" ml-5 w-300">
         {{title}}
         </li>
         <li>
-        <img src={{image}}} class="w-500">
+        <img src='{{image}}' style="width:300px; height:300px">
        </li>
-        <li class="w-300">
+        <li class="ml-5  w-300">
         {{departure}}
         </li>
-        <li class="w-300">
+        <li class=" ml-5 w-300">
        {{arrival}}
         </li>
+<!-- creating forms so we can submit tripId for deletion -->
+        <form action='/deleteTrip' method='post'>
+        <input type="hidden" name="tripId" value='{{tripId}}' />
+        <input type="submit" value="Delete"/>
+        </form>
       {{/tripsList}}
     </ul>
 </div>
@@ -59,7 +59,6 @@
 
 
 </body>
-
 <script src="trips.js"></script>
 
 </html>
